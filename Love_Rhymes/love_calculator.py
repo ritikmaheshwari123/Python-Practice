@@ -42,7 +42,7 @@ love_rhymes = {
                 "A hundred ways to tease you slow 🔥", "A hundred sparks, let them flow 😏"],
     "thousand": ["A thousand kisses overdue 😘", "I’d cross a thousand miles for you 💑",
                  "A thousand thoughts I won’t text 😈", "A thousand kisses… what’s next? 🔥"],
-    "million": ["Million sparks when you’re near 🔥"]
+    "llion": ["Million sparks when you’re near 🔥"]
 }
 
 
@@ -59,7 +59,7 @@ def get_rhyme(last_rhyme):
     if last_rhyme.endswith("thousand"):
         return random.choice(love_rhymes["thousand"])
     if last_rhyme.endswith("million"):
-        return random.choice(love_rhymes["million"])
+        return random.choice(love_rhymes["llion"])
     return "My love cannot be decided by this program baby 😜"
 
 
@@ -86,9 +86,10 @@ def calculate(expression):
     except:
         return None, "❌ Please enter a valid expression like: 3 + 4 😘"
 
+# Run with command -> streamlit run love_calculator.py
 
 # --- Streamlit UI ---
-st.set_page_config(page_title="💘 Love Calculator 💘", page_icon="💖", layout="centered")
+st.set_page_config(page_title="💘 Love Rhymes to your loved ones 💘", page_icon="💖", layout="centered")
 
 # --- CSS & Heart Animation ---
 st.markdown("""
@@ -146,14 +147,15 @@ window.onload = createHearts;
 </script>
 """, unsafe_allow_html=True)
 
-st.markdown("<h1 style='text-align:center; color:#ff66cc;'>💘 Love Rhyme Calculator 💘</h1>", unsafe_allow_html=True)
-st.markdown("<p style='text-align:center; color:#ff99cc;'>Calculate numbers & get a love rhyme 💌</p>",
+st.markdown("<h1 style='text-align:center; color:#ff66cc;'>💘 Love Rhyme Generator 💘</h1>", unsafe_allow_html=True)
+st.markdown("<p style='text-align:center; color:#ff99cc;'>Write simple mathematical expression & get a love rhyme "
+            "💌</p>",
             unsafe_allow_html=True)
 
 # --- Input Card ---
 with st.container():
     st.markdown('<div class="card">', unsafe_allow_html=True)
-    expression = st.text_input("Enter calculation (e.g. 4 + 5, 10 - 2, 6 * 3, 8 / 2):")
+    expression = st.text_input("Enter simple mathematical (e.g. 4 + 5, 10 - 2, 6 * 3, 8 / 2):")
 
     if st.button("💖 Calculate and get love rhyme 💖"):
         result, error = calculate(expression)
@@ -164,7 +166,7 @@ with st.container():
 
             # Show full number word
             word = num2words(int(result)).replace("-", " ")
-            st.success(f"📝 Result: {word}")  # <-- Full word display
+            st.success(f"📝 Result: {result}: {word}")  # <-- Full word display
 
             # Flirt Meter
             flirt_level = 100
